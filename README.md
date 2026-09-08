@@ -70,22 +70,15 @@ Também em `src/config/site.ts`, dentro de `siteConfig`: e-mail, Instagram, cida
 
 ### Cases
 
-`src/data/cases.ts` — um objeto por cliente. **Campos vazios (`""` ou `[]`) são ocultados automaticamente** pelo componente `Cases`. Preencha apenas com dados reais e autorizados:
+`src/data/cases.ts` — um objeto por cliente. Cards resumidos: foto, nome e breve descrição. **Campo vazio (`""`) é ocultado automaticamente** pelo componente `Cases`. Preencha apenas com dados reais e autorizados:
 
 ```ts
 {
   id: 'imperio-clinic',
   client: 'Império Clinic',
   segment: 'Saúde e estética',
-  context: '...',
-  diagnosis: '...',
-  strategy: '...',
-  deliverables: ['...'],
-  qualitativeResult: '...',
-  metrics: [{ label: 'Aumento de agendamentos', value: '+38%' }],
+  description: 'Uma ou duas frases sobre o trabalho.',
   media: '/cases/imperio-clinic.jpg',
-  testimonial: '...',
-  testimonialAuthor: 'Nome, cargo',
 }
 ```
 
@@ -146,7 +139,7 @@ Nada abaixo foi inventado — são lacunas reais aguardando material da Delta:
 - [ ] Número de WhatsApp oficial (`src/config/site.ts`)
 - [ ] Domínio oficial de publicação e imagem de Open Graph
 - [ ] E-mail comercial e @ do Instagram confirmados
-- [ ] Textos de contexto, diagnóstico, estratégia, entregas, resultado, métricas e depoimento de cada case (`src/data/cases.ts`)
+- [ ] Breve descrição de cada case (`src/data/cases.ts`)
 - [ ] Imagens/vídeos de capa dos cases
 - [ ] Logos reais dos clientes (`src/data/clients.ts`)
 - [ ] Fotos e bios curtas da equipe, com validação de nomes e cargos (`src/data/team.ts`)
