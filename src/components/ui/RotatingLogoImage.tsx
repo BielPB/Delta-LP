@@ -56,9 +56,16 @@ export function RotatingLogoImage({ className = '', duration = 10, interactive =
     return () => window.removeEventListener('pointermove', handleMove)
   }, [interactive, reducedMotion, tiltX, tiltZ])
 
+  // Dissolve gradualmente a sombra/reflexo do render (parte inferior da
+  // imagem) até a transparência total, em vez de recortar com uma borda
+  // reta — assim a base da imagem sempre se funde com o fundo da seção,
+  // qualquer que ele seja, sem deixar uma mancha ou "caixa" visível.
+  const fadeMask = 'linear-gradient(to bottom, black 0%, black 62%, transparent 88%)'
+  const fadeStyle = { maskImage: fadeMask, WebkitMaskImage: fadeMask } as const
+
   if (reducedMotion) {
     return (
-      <div className={className}>
+      <div className={className} style={fadeStyle}>
         <picture>
           <source srcSet="/brand/delta-logo-lateral-3d.webp" type="image/webp" />
           <img src="/brand/delta-logo-lateral-3d.png" alt="Delta" className="h-full w-full object-contain" />
@@ -68,7 +75,7 @@ export function RotatingLogoImage({ className = '', duration = 10, interactive =
   }
 
   return (
-    <div className={className} style={{ perspective: 900 }}>
+    <div className={className} style={{ perspective: 900, ...fadeStyle }}>
       <picture>
         <source srcSet="/brand/delta-logo-lateral-3d.webp" type="image/webp" />
         <motion.img
