@@ -108,15 +108,16 @@ Também em `src/config/site.ts`, dentro de `siteConfig`: e-mail, Instagram, cida
 
 Os arquivos oficiais da marca ficam em `public/brand/`:
 
-- `delta-mark.png` — símbolo isolado, fundo transparente.
+- `delta-mark.png` — símbolo isolado (versão flat), fundo transparente.
 - `delta-lockup.png` — símbolo + wordmark já combinados em uma única imagem (disponível para usos futuros, ex.: imagem de Open Graph).
+- `delta-logo-lateral-3d.png` / `.webp` — render 3D oficial da marca. O arquivo original recebido tinha fundo de estúdio sólido (sem canal alpha); o fundo foi removido via matte de luminância (pixels do símbolo e do brilho preservados sem alteração) para ficar transparente, e a imagem foi redimensionada/comprimida para web (WebP com fallback PNG).
 
-O arquivo `delta-mark.png` é sempre usado como `<img>` real (nunca recriado em SVG/Canvas):
+Nenhum dos dois é recriado em SVG/Canvas — sempre usados como `<img>` real:
 
-- **Estático**: [DeltaWordmark.tsx](src/components/ui/DeltaWordmark.tsx) — header e footer, altura fixa + `width: auto` (sem distorção) e favicon.
-- **Girando em 3D**: [RotatingLogoImage.tsx](src/components/ui/RotatingLogoImage.tsx) — gira a própria imagem com `transform: rotateY()` via CSS (sem Canvas/WebGL), usado no Hero, na seção do problema, no hub da constelação de módulos, no card do manifesto e no background da seção final. Respeita `prefers-reduced-motion` (mostra a imagem estática) e nunca corta ou distorce o arquivo (`object-contain`).
+- **Estático**: [DeltaWordmark.tsx](src/components/ui/DeltaWordmark.tsx) — `delta-mark.png` no header e footer, altura fixa + `width: auto` (sem distorção), e como favicon.
+- **Girando em 3D**: [RotatingLogoImage.tsx](src/components/ui/RotatingLogoImage.tsx) — gira `delta-logo-lateral-3d.png/.webp` com `transform: rotateY()` via CSS (sem Canvas/WebGL), usado no Hero, na seção do problema, no hub da constelação de módulos, no card do manifesto e no background da seção final. Respeita `prefers-reduced-motion` (mostra a imagem estática) e nunca corta ou distorce o arquivo (`object-contain`).
 
-Para trocar o logo, substitua os arquivos em `public/brand/` mantendo os mesmos nomes — nenhum componente precisa ser alterado.
+Para trocar o logo, substitua os arquivos em `public/brand/` mantendo os mesmos nomes — nenhum componente precisa ser alterado. Se o novo arquivo já vier com fundo transparente, o passo de remoção de fundo não é necessário.
 
 ## Inserindo mídia
 
@@ -154,7 +155,7 @@ Nada abaixo foi inventado — são lacunas reais aguardando material da Delta:
 
 ## Decisões técnicas relevantes
 
-- **Logo sempre como imagem real**: `delta-mark.png` nunca é recriado em SVG/Canvas. Onde precisa girar em 3D (Hero, seção do problema, hub da constelação, card do manifesto, background da seção final), o giro é feito com `transform: rotateY()` em CSS sobre o próprio arquivo ([RotatingLogoImage.tsx](src/components/ui/RotatingLogoImage.tsx)).
+- **Logo sempre como imagem real**: os arquivos da marca nunca são recriados em SVG/Canvas. Onde precisa girar em 3D (Hero, seção do problema, hub da constelação, card do manifesto, background da seção final), o giro é feito com `transform: rotateY()` em CSS sobre o render 3D oficial (`delta-logo-lateral-3d.png/.webp`, [RotatingLogoImage.tsx](src/components/ui/RotatingLogoImage.tsx)).
 - **Delta Core em Three.js**: geometria procedural (bipirâmide triangular — dois cones de 3 lados unidos pela base) usada apenas para a cena ambiente (partículas, anel de energia, fragmentos orbitando e os nós da constelação de módulos) — nunca para representar a marca. Sem nenhum arquivo `.glb`/`.gltf` externo. Reage ao ponteiro, à inclinação do dispositivo (quando disponível) e à rolagem.
 - **Carregamento assíncrono do 3D**: `DeltaCoreScene` e `ModuleConstellation` são carregados via `React.lazy` — o bundle do Three.js (maior parte do peso da aplicação) só é baixado quando a seção correspondente é renderizada, e nunca bloqueia o primeiro paint.
 - **Fallback sem WebGL**: `CoreFallback` (SVG/CSS estático) é exibido quando o navegador não suporta WebGL, quando `prefers-reduced-motion` está ativo, ou enquanto o suporte ainda está sendo verificado.

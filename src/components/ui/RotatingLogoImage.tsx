@@ -11,10 +11,13 @@ type RotatingLogoImageProps = {
 }
 
 /**
- * Gira o arquivo real da marca (`/brand/delta-mark.png`) em 3D usando apenas
- * transform CSS — nunca recria a forma em SVG/Canvas. Proporção original
- * preservada (`object-contain`, sem `width`/`height` fixos que distorçam),
- * fundo transparente, sem filtro de cor. Respeita prefers-reduced-motion.
+ * Gira o render 3D real da marca (`/brand/delta-logo-lateral-3d.png`) usando
+ * apenas transform CSS — nunca recria a forma em SVG/Canvas. Fundo original
+ * do render (estúdio escuro) removido via matte de luminância para ficar
+ * transparente (o arquivo fornecido não tinha alpha); pixels do símbolo e
+ * do brilho não são alterados. Proporção preservada (`object-contain`, sem
+ * `width`/`height` fixos que distorçam), sem filtro de cor. Respeita
+ * prefers-reduced-motion.
  */
 export function RotatingLogoImage({ className = '', duration = 10, interactive = false }: RotatingLogoImageProps) {
   const reducedMotion = useReducedMotion()
@@ -56,24 +59,30 @@ export function RotatingLogoImage({ className = '', duration = 10, interactive =
   if (reducedMotion) {
     return (
       <div className={className}>
-        <img src="/brand/delta-mark.png" alt="Delta" className="h-full w-full object-contain" />
+        <picture>
+          <source srcSet="/brand/delta-logo-lateral-3d.webp" type="image/webp" />
+          <img src="/brand/delta-logo-lateral-3d.png" alt="Delta" className="h-full w-full object-contain" />
+        </picture>
       </div>
     )
   }
 
   return (
     <div className={className} style={{ perspective: 900 }}>
-      <motion.img
-        src="/brand/delta-mark.png"
-        alt="Delta"
-        className="h-full w-full object-contain"
-        style={{
-          rotateY,
-          rotateX: interactive ? tiltX : 0,
-          rotateZ: interactive ? tiltZ : 0,
-          transformStyle: 'preserve-3d',
-        }}
-      />
+      <picture>
+        <source srcSet="/brand/delta-logo-lateral-3d.webp" type="image/webp" />
+        <motion.img
+          src="/brand/delta-logo-lateral-3d.png"
+          alt="Delta"
+          className="h-full w-full object-contain"
+          style={{
+            rotateY,
+            rotateX: interactive ? tiltX : 0,
+            rotateZ: interactive ? tiltZ : 0,
+            transformStyle: 'preserve-3d',
+          }}
+        />
+      </picture>
     </div>
   )
 }
