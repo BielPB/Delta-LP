@@ -50,7 +50,7 @@ export function Cases() {
 
         <div
           ref={scrollerRef}
-          className="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 -mx-5 px-5 sm:mx-0 sm:px-0"
+          className="flex snap-x snap-mandatory gap-6 overflow-x-auto overflow-y-hidden pb-4 -mx-5 px-5 sm:mx-0 sm:px-0"
         >
           {cases.map((item, i) => (
             <Reveal key={item.id} delay={Math.min(i * 0.03, 0.2)} className="snap-start" variant="flip">
@@ -70,8 +70,8 @@ function CaseCard({ item }: { item: CaseStudy }) {
   const hasTestimonial = item.testimonial
 
   return (
-    <article className="flex h-full w-[min(85vw,400px)] shrink-0 flex-col overflow-hidden rounded-[var(--radius-lg)] border border-white/10 bg-white/[0.03] shadow-[var(--shadow-card)]">
-      <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden bg-gradient-to-br from-[var(--color-carbon)] to-black">
+    <article className="flex h-[600px] w-[min(85vw,400px)] shrink-0 flex-col overflow-hidden rounded-[var(--radius-lg)] border border-white/10 bg-white/[0.03] shadow-[var(--shadow-card)]">
+      <div className="relative flex aspect-[4/3] shrink-0 items-center justify-center overflow-hidden bg-gradient-to-br from-[var(--color-carbon)] to-black">
         {item.media ? (
           <img src={item.media} alt={item.client} loading="lazy" className="h-full w-full object-cover" />
         ) : (
@@ -82,7 +82,7 @@ function CaseCard({ item }: { item: CaseStudy }) {
         </span>
       </div>
 
-      <div className="flex flex-1 flex-col gap-4 p-6">
+      <div className="flex flex-1 flex-col gap-4 overflow-y-auto p-6">
         <h3 className="text-xl font-medium text-white">{item.client}</h3>
 
         {hasNarrative && (

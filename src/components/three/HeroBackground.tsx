@@ -8,12 +8,14 @@ function StaticArc({ className = '' }: { className?: string }) {
   return (
     <div className={className} aria-hidden="true">
       <svg viewBox="0 0 100 100" className="h-full w-full">
-        <polygon
-          points="50,6 66.05,27.91 91.85,36.4 75.96,58.44 75.86,85.6 50,77.3 24.14,85.6 24.04,58.44 8.15,36.4 33.95,27.91"
+        <ellipse
+          cx="50"
+          cy="50"
+          rx="46"
+          ry="17"
           fill="none"
           stroke="#c6ff34"
           strokeWidth="0.6"
-          strokeLinejoin="round"
           opacity="0.4"
           transform="rotate(-12 50 50)"
         />
