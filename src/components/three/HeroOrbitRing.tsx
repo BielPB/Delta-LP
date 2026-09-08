@@ -6,15 +6,21 @@ import { usePointerParallax } from '@/hooks/usePointerParallax'
 function Ring() {
   const tilt = useRef<THREE.Group>(null)
   const spin = useRef<THREE.Mesh>(null)
+  const autoRotation = useRef(0)
   const { pointer, tilt: deviceTilt } = usePointerParallax()
 
   useFrame((_, delta) => {
     if (spin.current) {
       spin.current.rotation.z += delta * 0.22
     }
+    // Um círculo perfeito girando sobre o próprio eixo não muda de
+    // aparência (simetria de revolução) — por isso o giro precisa
+    // acontecer no plano da órbita (Y), sempre ativo, independente do
+    // ponteiro. O ponteiro só soma um leve desvio por cima.
+    autoRotation.current += delta * 0.16
     if (tilt.current) {
       const targetX = Math.PI / 2.3 + pointer.current.y * 0.32 + deviceTilt.current.y * 0.28
-      const targetY = pointer.current.x * 0.32 + deviceTilt.current.x * 0.28
+      const targetY = autoRotation.current + pointer.current.x * 0.32 + deviceTilt.current.x * 0.28
       tilt.current.rotation.x = THREE.MathUtils.damp(tilt.current.rotation.x, targetX, 4, delta)
       tilt.current.rotation.y = THREE.MathUtils.damp(tilt.current.rotation.y, targetY, 4, delta)
     }
