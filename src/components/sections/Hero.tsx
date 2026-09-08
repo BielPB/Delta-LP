@@ -1,7 +1,6 @@
-import { lazy, Suspense } from 'react'
 import { motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
-import { CoreFallback } from '@/components/three/CoreFallback'
+import { HeroBackground } from '@/components/three/HeroBackground'
 import { Button } from '@/components/ui/Button'
 import { MagneticButton } from '@/components/ui/MagneticButton'
 import { RotatingLogoImage } from '@/components/ui/RotatingLogoImage'
@@ -9,8 +8,6 @@ import { openWhatsApp } from '@/lib/whatsapp'
 import { trackEvent } from '@/lib/analytics'
 
 const eyebrowWords = ['ESTRATÉGIA', 'CRIAÇÃO', 'EXECUÇÃO', 'CRESCIMENTO']
-
-const DeltaCoreScene = lazy(() => import('@/components/three/DeltaCoreScene'))
 
 function scrollToSystem() {
   document.getElementById('sistema')?.scrollIntoView({ behavior: 'smooth' })
@@ -30,16 +27,11 @@ export function Hero() {
         aria-hidden="true"
       />
 
-      <Suspense fallback={<CoreFallback className="absolute inset-0 h-full w-full" />}>
-        <DeltaCoreScene className="absolute inset-0 h-full w-full" />
-      </Suspense>
-
       <div className="pointer-events-none absolute inset-0 z-[1] flex items-end justify-center pb-16 opacity-20 lg:items-center lg:justify-end lg:pb-0 lg:opacity-100">
-        <RotatingLogoImage
-          className="h-[140px] w-[140px] sm:h-[180px] sm:w-[180px] lg:mr-[10%] lg:h-[340px] lg:w-[340px]"
-          duration={14}
-          interactive
-        />
+        <div className="relative flex h-[140px] w-[140px] items-center justify-center sm:h-[180px] sm:w-[180px] lg:mr-[10%] lg:h-[340px] lg:w-[340px]">
+          <HeroBackground className="absolute inset-[-45%]" />
+          <RotatingLogoImage className="relative h-full w-full" duration={14} interactive />
+        </div>
       </div>
 
       <div className="container-delta relative z-10 grid gap-10 py-24 lg:min-h-[70vh] lg:grid-cols-2 lg:items-center">

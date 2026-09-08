@@ -27,9 +27,10 @@ npm run lint      # oxlint
 src/
   components/
     layout/     Header, Footer, ScrollProgress, FloatingWhatsApp, SkipLink
-    three/      Cena 3D ambiente (partículas, anel, fragmentos abstratos e a
-                constelação de módulos): CorePrism (geometria procedural),
-                DeltaCoreScene, ModuleConstellation, Particles, CoreFallback
+    three/      Cena 3D ambiente: HeroBackground/HeroOrbitRing (arco
+                minimalista do Hero), DeltaCoreScene (partículas + fragmentos
+                da CTA final), ModuleConstellation (constelação de módulos),
+                CorePrism (geometria procedural), Particles, CoreFallback
                 (fallback sem WebGL). A marca em si NÃO é recriada em 3D —
                 veja RotatingLogoImage em ui/.
     sections/   Uma seção por arquivo (Hero, ProblemSection, SystemSection,
@@ -157,7 +158,8 @@ Nada abaixo foi inventado — são lacunas reais aguardando material da Delta:
 
 - **Logo sempre como imagem real**: os arquivos da marca nunca são recriados em SVG/Canvas. Onde precisa girar em 3D (Hero, seção do problema, hub da constelação, card do manifesto, background da seção final), o giro é feito com `transform: rotateY()` em CSS sobre o render 3D oficial (`delta-logo-lateral-3d.png/.webp`, [RotatingLogoImage.tsx](src/components/ui/RotatingLogoImage.tsx)).
 - **Delta Core em Three.js**: geometria procedural (bipirâmide triangular — dois cones de 3 lados unidos pela base) usada apenas para a cena ambiente (partículas, anel de energia, fragmentos orbitando e os nós da constelação de módulos) — nunca para representar a marca. Sem nenhum arquivo `.glb`/`.gltf` externo. Reage ao ponteiro, à inclinação do dispositivo (quando disponível) e à rolagem.
-- **Carregamento assíncrono do 3D**: `DeltaCoreScene` e `ModuleConstellation` são carregados via `React.lazy` — o bundle do Three.js (maior parte do peso da aplicação) só é baixado quando a seção correspondente é renderizada, e nunca bloqueia o primeiro paint.
+- **Fundo minimalista do Hero**: [HeroBackground.tsx](src/components/three/HeroBackground.tsx) / [HeroOrbitRing.tsx](src/components/three/HeroOrbitRing.tsx) — só um arco fino girando ao redor da logo, com leve inclinação 3D que segue o cursor (desktop) ou a inclinação do aparelho (mobile). Sem partículas nem fragmentos no Hero, para não competir com a logo e o texto; cai para um arco estático em SVG sem WebGL ou com `prefers-reduced-motion`.
+- **Carregamento assíncrono do 3D**: `HeroOrbitRing`, `DeltaCoreScene` e `ModuleConstellation` são carregados via `React.lazy` — o bundle do Three.js (maior parte do peso da aplicação) só é baixado quando a seção correspondente é renderizada, e nunca bloqueia o primeiro paint.
 - **Fallback sem WebGL**: `CoreFallback` (SVG/CSS estático) é exibido quando o navegador não suporta WebGL, quando `prefers-reduced-motion` está ativo, ou enquanto o suporte ainda está sendo verificado.
 - **Performance em mobile**: DPR, contagem de partículas e intensidade de luz são reduzidos automaticamente em telas pequenas; o loop de renderização do Canvas pausa (`frameloop="never"`) quando a cena sai da viewport ou a aba perde foco.
 - **Acessibilidade**: skip link, foco visível, `aria-*` em menu, accordion e seleção de módulos, alvos de toque ≥44px, navegação por teclado, hierarquia de headings única (`h1` → `h2` → `h3`), suporte total a `prefers-reduced-motion`.
