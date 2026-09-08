@@ -85,55 +85,20 @@ export function ProblemSection() {
 }
 
 function DispersedDiagram() {
-  const dots = [
-    [20, 18],
-    [82, 12],
-    [10, 55],
-    [90, 60],
-    [30, 88],
-    [70, 92],
-  ]
-
   return (
-    <div className="relative mx-auto aspect-square w-full max-w-sm">
-      <svg viewBox="0 0 100 100" className="h-full w-full" aria-hidden="true">
-        {dots.map(([x, y], i) => (
-          <motion.line
-            key={`line-${i}`}
-            x1={x}
-            y1={y}
-            x2={50}
-            y2={50}
-            stroke="#c6ff34"
-            strokeWidth="0.4"
-            initial={{ pathLength: 0, opacity: 0 }}
-            whileInView={{ pathLength: 1, opacity: 0.45 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.3 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-          />
-        ))}
-        {dots.map(([x, y], i) => (
-          <motion.circle
-            key={`dot-${i}`}
-            cx={x}
-            cy={y}
-            r="2.2"
-            fill="#5a5854"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: i * 0.08 }}
-          />
-        ))}
-      </svg>
+    <div className="relative mx-auto flex aspect-square w-full max-w-sm items-center justify-center">
+      <div
+        className="absolute inset-[22%] rounded-full bg-[var(--color-lime)] opacity-25 blur-3xl motion-safe:animate-pulse"
+        aria-hidden="true"
+      />
       <motion.div
-        className="absolute inset-0 flex items-center justify-center"
+        className="relative flex items-center justify-center"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.7, delay: 1, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
       >
-        <RotatingLogoImage className="h-[34%] w-[34%]" duration={16} />
+        <RotatingLogoImage className="h-[42%] w-[42%]" duration={16} />
       </motion.div>
     </div>
   )
