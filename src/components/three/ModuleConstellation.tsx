@@ -59,12 +59,12 @@ function ModuleNode({
       spin.current.rotation.y += delta * (active ? 0.5 : 0.18)
       spin.current.rotation.x += delta * (active ? 0.22 : 0.08)
     }
-    const targetScale = active ? 0.32 : 0.19
+    const targetScale = active ? 0.24 : 0.13
     if (core.current) {
       core.current.scale.setScalar(THREE.MathUtils.damp(core.current.scale.x, targetScale, 6, delta))
     }
     if (halo.current) {
-      const targetHalo = targetScale * (active ? 1.9 : 1.5)
+      const targetHalo = targetScale * (active ? 1.35 : 1.15)
       halo.current.scale.setScalar(THREE.MathUtils.damp(halo.current.scale.x, targetHalo, 6, delta))
     }
   })
@@ -79,7 +79,7 @@ function ModuleNode({
           <meshStandardMaterial
             color={active ? '#1c1c1a' : '#111110'}
             emissive={glowColor}
-            emissiveIntensity={active ? 1.1 : 0.4}
+            emissiveIntensity={active ? 0.8 : 0.22}
             roughness={0.35}
             metalness={0.5}
           />
@@ -89,7 +89,7 @@ function ModuleNode({
           <meshBasicMaterial
             color="#c6ff34"
             transparent
-            opacity={active ? 0.2 : 0.09}
+            opacity={active ? 0.12 : 0.04}
             blending={THREE.AdditiveBlending}
             depthWrite={false}
           />
@@ -108,7 +108,7 @@ function ModuleNode({
         <sphereGeometry args={[0.55, 12, 12]} />
         <meshBasicMaterial transparent opacity={0} depthWrite={false} />
       </mesh>
-      {active && <pointLight intensity={3} color="#c6ff34" distance={2.5} />}
+      {active && <pointLight intensity={1.6} color="#c6ff34" distance={2} />}
     </group>
   )
 }
