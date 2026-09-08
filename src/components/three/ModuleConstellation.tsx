@@ -2,7 +2,6 @@ import { useMemo, useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Line } from '@react-three/drei'
 import * as THREE from 'three'
-import { CorePrism } from '@/components/three/CorePrism'
 import type { ServiceModule } from '@/data/services'
 
 type ModuleConstellationProps = {
@@ -36,6 +35,12 @@ function Hub() {
   )
 }
 
+/**
+ * Nó de módulo: um pequeno poliedro sólido (sem wireframe) com brilho
+ * proporcional ao estado ativo, envolto por um halo aditivo lime — lê como
+ * um ponto de luz na "constelação", coerente com o brilho do núcleo
+ * central, em vez de uma pirâmide em arame que se perde em telas pequenas.
+ */
 function ModuleNode({
   position,
   active,
@@ -45,26 +50,50 @@ function ModuleNode({
   active: boolean
   onSelect: () => void
 }) {
-  const group = useRef<THREE.Group>(null)
+  const spin = useRef<THREE.Group>(null)
+  const core = useRef<THREE.Mesh>(null)
+  const halo = useRef<THREE.Mesh>(null)
 
   useFrame((_, delta) => {
-    if (!group.current) return
-    group.current.rotation.y += delta * (active ? 0.6 : 0.2)
-    const targetScale = active ? 0.42 : 0.26
-    const current = group.current.scale.x
-    const next = THREE.MathUtils.damp(current, targetScale, 6, delta)
-    group.current.scale.setScalar(next)
+    if (spin.current) {
+      spin.current.rotation.y += delta * (active ? 0.5 : 0.18)
+      spin.current.rotation.x += delta * (active ? 0.22 : 0.08)
+    }
+    const targetScale = active ? 0.32 : 0.19
+    if (core.current) {
+      core.current.scale.setScalar(THREE.MathUtils.damp(core.current.scale.x, targetScale, 6, delta))
+    }
+    if (halo.current) {
+      const targetHalo = targetScale * (active ? 1.9 : 1.5)
+      halo.current.scale.setScalar(THREE.MathUtils.damp(halo.current.scale.x, targetHalo, 6, delta))
+    }
   })
+
+  const glowColor = active ? '#c6ff34' : '#7a8a3f'
 
   return (
     <group position={position}>
-      <group ref={group}>
-        <CorePrism
-          scale={1}
-          color={active ? '#161616' : '#0d0d0d'}
-          edgeColor={active ? '#c6ff34' : '#5c6b2a'}
-          opacity={active ? 1 : 0.75}
-        />
+      <group ref={spin}>
+        <mesh ref={core}>
+          <icosahedronGeometry args={[1, 0]} />
+          <meshStandardMaterial
+            color={active ? '#1c1c1a' : '#111110'}
+            emissive={glowColor}
+            emissiveIntensity={active ? 1.1 : 0.4}
+            roughness={0.35}
+            metalness={0.5}
+          />
+        </mesh>
+        <mesh ref={halo}>
+          <icosahedronGeometry args={[1, 0]} />
+          <meshBasicMaterial
+            color="#c6ff34"
+            transparent
+            opacity={active ? 0.2 : 0.09}
+            blending={THREE.AdditiveBlending}
+            depthWrite={false}
+          />
+        </mesh>
       </group>
       <mesh
         onClick={onSelect}
