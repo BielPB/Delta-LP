@@ -12,10 +12,15 @@ type ModuleConstellationProps = {
 
 const RADIUS = 2.7
 
+/**
+ * Posiciona os módulos em sentido horário a partir do topo (12h): o módulo
+ * 0 fica no topo e os seguintes avançam no relógio (ângulo decrescente,
+ * já que X-direita/Y-cima é sentido anti-horário quando o ângulo cresce).
+ */
 function useNodePositions(count: number) {
   return useMemo(() => {
     return Array.from({ length: count }, (_, i) => {
-      const angle = (i / count) * Math.PI * 2 - Math.PI / 2
+      const angle = Math.PI / 2 - (i / count) * Math.PI * 2
       return new THREE.Vector3(Math.cos(angle) * RADIUS, Math.sin(angle) * RADIUS * 0.62, 0)
     })
   }, [count])
