@@ -35,7 +35,7 @@ const painPoints = [
   {
     icon: Database,
     title: 'Dados coletados sem decisão',
-    description: 'Relatórios entregues, arquivados — e nunca transformados em próximo passo.',
+    description: 'Relatórios entregues, arquivados e nunca transformados em próximo passo.',
   },
   {
     icon: MessageSquareWarning,

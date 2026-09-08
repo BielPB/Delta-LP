@@ -12,7 +12,7 @@ export function Team() {
         <SectionHeading
           eyebrow="Equipe"
           title="Especialistas diferentes. Uma direção compartilhada."
-          description="Uma equipe. Um sistema. Uma direção — por trás de cada estratégia que a Delta assina."
+          description="Uma equipe. Um sistema. Uma direção por trás de cada estratégia que a Delta assina."
         />
 
         <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">

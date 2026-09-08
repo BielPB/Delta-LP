@@ -11,13 +11,13 @@ export function Footer() {
     <footer className="border-t border-white/10 bg-[var(--color-black-deep)] pt-16 pb-8">
       <div className="container-delta grid gap-12 lg:grid-cols-[1.2fr_1fr_1fr]">
         <div className="flex flex-col gap-4">
-          <a href="#hero" className="flex min-h-[44px] items-center" aria-label="Delta — página inicial">
+          <a href="#hero" className="flex min-h-[44px] items-center" aria-label="Página inicial da Delta">
             <DeltaWordmark markHeightClassName="h-10" textClassName="text-2xl" />
           </a>
           <p className="max-w-xs text-white/60">{siteConfig.tagline}</p>
           <p className="flex items-center gap-2 text-sm text-white/40">
             <MapPin className="size-4" aria-hidden="true" />
-            {siteConfig.contact.city} — {siteConfig.contact.state}
+            {siteConfig.contact.city}, {siteConfig.contact.state}
           </p>
         </div>
 

@@ -105,7 +105,7 @@ export function SystemSection() {
         <Reveal>
           <div className="flex flex-col items-start gap-5 rounded-[var(--radius-lg)] border border-white/10 bg-white/[0.03] p-8 sm:flex-row sm:items-center sm:justify-between">
             <p className="max-w-md text-balance text-lg font-medium text-white">
-              O diferencial não está em oferecer sete frentes. Está em fazê-las trabalhar juntas — agora
+              O diferencial não está em oferecer sete frentes. Está em fazê-las trabalhar juntas, agora
               focado em <span className="text-[var(--color-lime)]">{active.title.toLowerCase()}</span>.
             </p>
             <Button variant="primary" onClick={() => openWhatsApp('sistema_section')}>

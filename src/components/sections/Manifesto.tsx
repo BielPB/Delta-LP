@@ -58,7 +58,7 @@ function EditorialMark() {
       <div className="grid-lines absolute inset-6 rounded-[var(--radius-md)] opacity-30" aria-hidden="true" />
       <RotatingLogoImage className="relative h-2/3 w-2/3" duration={12} />
       <span className="absolute bottom-6 left-6 text-xs uppercase tracking-[0.2em] text-white/30">
-        Campina Grande — PB
+        Campina Grande, PB
       </span>
     </div>
   )

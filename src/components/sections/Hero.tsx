@@ -73,7 +73,7 @@ export function Hero() {
             className="max-w-xl text-balance text-[clamp(1rem,1.6vw,1.2rem)] leading-relaxed text-white/65"
           >
             A Delta une estratégia, posicionamento, audiovisual, design, tráfego e tecnologia num único
-            sistema — para transformar marcas em referências, e atenção em oportunidade real.
+            sistema, para transformar marcas em referências e atenção em oportunidade real.
           </motion.p>
 
           <motion.div
@@ -95,7 +95,7 @@ export function Hero() {
               </MagneticButton>
             </div>
             <p className="text-sm text-white/45">
-              Conte o momento da sua marca. A conversa começa agora, pelo WhatsApp — sem formulário, sem
+              Conte o momento da sua marca. A conversa começa agora, pelo WhatsApp, sem formulário e sem
               espera.
             </p>
           </motion.div>

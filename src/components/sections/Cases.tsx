@@ -26,7 +26,7 @@ export function Cases() {
           <SectionHeading
             eyebrow="Cases"
             title="Não é portfólio. É diagnóstico em prática."
-            description="Contexto, decisão e execução — o raciocínio por trás de cada entrega, marca por marca."
+            description="Contexto, decisão e execução: o raciocínio por trás de cada entrega, marca por marca."
           />
           <div className="hidden gap-3 sm:flex">
             <button
@@ -123,7 +123,7 @@ function CaseCard({ item }: { item: CaseStudy }) {
             <Quote className="size-4 text-[var(--color-lime)]" aria-hidden="true" />
             <p className="italic leading-relaxed">&ldquo;{item.testimonial}&rdquo;</p>
             {item.testimonialAuthor && (
-              <cite className="not-italic text-white/40">— {item.testimonialAuthor}</cite>
+              <cite className="not-italic text-white/40">{item.testimonialAuthor}</cite>
             )}
           </blockquote>
         )}

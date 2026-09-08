@@ -17,7 +17,7 @@ export const faq: FaqItem[] = [
   {
     question: 'A Delta também cria sites e landing pages?',
     answer:
-      'Sim. Desenvolvemos sites institucionais, landing pages e experiências digitais focadas em clareza, performance e conversão — como esta página.',
+      'Sim. Desenvolvemos sites institucionais, landing pages e experiências digitais focadas em clareza, performance e conversão, como esta página.',
   },
   {
     question: 'Vocês fazem produção audiovisual presencial?',

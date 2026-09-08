@@ -33,7 +33,7 @@ export const siteConfig = {
   },
 
   seo: {
-    title: 'Delta — Estratégia, Conteúdo, Audiovisual, Tráfego e Tecnologia',
+    title: 'Delta: Estratégia, Conteúdo, Audiovisual, Tráfego e Tecnologia',
     description:
       'A Delta conecta estratégia, posicionamento, produção audiovisual, design, tráfego pago e tecnologia para construir marcas fortes e gerar oportunidades.',
     ogImage: '/og-image.jpg', // TODO: adicionar imagem 1200x630 real para compartilhamento social.

@@ -4,22 +4,22 @@ import { Reveal } from '@/components/ui/Reveal'
 
 const phases = [
   {
-    range: 'Dias 1–10',
+    range: 'Dias 1 a 10',
     title: 'Imersão e estratégia',
     description: 'Pesquisa, diagnóstico, posicionamento, pautas e roteiros.',
   },
   {
-    range: 'Dias 10–15',
+    range: 'Dias 10 a 15',
     title: 'Aprovação',
     description: 'Alinhamento, refinamento e validação das ideias.',
   },
   {
-    range: 'Dias 15–20',
+    range: 'Dias 15 a 20',
     title: 'Produção',
     description: 'Planejamento e realização das gravações e captações.',
   },
   {
-    range: 'Dias 20–30',
+    range: 'Dias 20 a 30',
     title: 'Pós-produção e entrega',
     description: 'Edição, design, organização e preparação do próximo ciclo.',
   },
@@ -37,7 +37,7 @@ export function Method() {
               sendo construído.</span>
             </>
           }
-          description="O método antecipa o planejamento, reduz improvisos e cria continuidade. Este é o fluxo-base da Delta — adaptável ao escopo de cada projeto."
+          description="O método antecipa o planejamento, reduz improvisos e cria continuidade. Este é o fluxo-base da Delta, adaptável ao escopo de cada projeto."
         />
 
         <div className="relative">
@@ -73,8 +73,8 @@ export function Method() {
 
         <Reveal delay={0.1}>
           <p className="max-w-2xl text-white/50 leading-relaxed">
-            Nem todo contrato segue exatamente o mesmo escopo — cada ciclo é ajustado ao momento e ao
-            objetivo da marca. O que não muda é a lógica: planejar um passo à frente da entrega.
+            Nem todo contrato segue exatamente o mesmo escopo. Cada ciclo é ajustado ao momento e ao
+            objetivo da marca, mas a lógica não muda: planejar um passo à frente da entrega.
           </p>
         </Reveal>
       </div>

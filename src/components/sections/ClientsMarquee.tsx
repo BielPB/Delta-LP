@@ -19,10 +19,16 @@ export function ClientsMarquee() {
           {track.map((client, i) => (
             <div
               key={`${client.id}-${i}`}
-              className="flex h-16 shrink-0 items-center justify-center px-4 text-xl font-medium text-white/35 transition-colors hover:text-white/70"
+              tabIndex={0}
+              className="group/logo flex h-16 shrink-0 items-center justify-center px-4 text-xl font-medium text-white/35 transition-colors duration-300 hover:text-[var(--color-lime)] focus-visible:text-[var(--color-lime)] active:text-[var(--color-lime)]"
             >
               {client.logo ? (
-                <img src={client.logo} alt={client.name} className="h-8 w-auto object-contain grayscale" loading="lazy" />
+                <img
+                  src={client.logo}
+                  alt={client.name}
+                  loading="lazy"
+                  className="h-8 w-auto object-contain grayscale transition-[filter] duration-300 group-hover/logo:grayscale-0 group-focus-visible/logo:grayscale-0 group-active/logo:grayscale-0"
+                />
               ) : (
                 <span>{client.name}</span>
               )}

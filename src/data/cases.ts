@@ -67,7 +67,7 @@ export const cases: CaseStudy[] = [
   },
   {
     id: 'sbrcc',
-    client: 'SBRCC — Sociedade Brasileira de Restauração Capilar e Cirurgia',
+    client: 'SBRCC (Sociedade Brasileira de Restauração Capilar e Cirurgia)',
     segment: 'Sociedade médica',
     context: '',
     diagnosis: '',

@@ -48,7 +48,7 @@ export function Header() {
           href="#hero"
           className="flex min-h-[44px] items-center"
           onClick={() => handleNavClick('#hero')}
-          aria-label="Delta — página inicial"
+          aria-label="Página inicial da Delta"
         >
           <DeltaWordmark markHeightClassName="h-9" textClassName="text-xl" />
         </a>
