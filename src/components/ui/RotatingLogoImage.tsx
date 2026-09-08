@@ -8,6 +8,8 @@ type RotatingLogoImageProps = {
   duration?: number
   /** Ativa leve inclinação 3D seguindo o cursor, além do giro contínuo. */
   interactive?: boolean
+  /** Quando false, exibe a logo parada (sem giro contínuo). */
+  spin?: boolean
 }
 
 /**
@@ -19,14 +21,14 @@ type RotatingLogoImageProps = {
  * `width`/`height` fixos que distorçam), sem filtro de cor. Respeita
  * prefers-reduced-motion.
  */
-export function RotatingLogoImage({ className = '', duration = 10, interactive = false }: RotatingLogoImageProps) {
+export function RotatingLogoImage({ className = '', duration = 10, interactive = false, spin = true }: RotatingLogoImageProps) {
   const reducedMotion = useReducedMotion()
   const rotateY = useMotionValue(0)
   const tiltX = useSpring(0, { stiffness: 60, damping: 20 })
   const tiltZ = useSpring(0, { stiffness: 60, damping: 20 })
 
   useEffect(() => {
-    if (reducedMotion) return
+    if (reducedMotion || !spin) return
     let raf: number
     let last = performance.now()
     const degreesPerSecond = 360 / duration
@@ -40,7 +42,7 @@ export function RotatingLogoImage({ className = '', duration = 10, interactive =
 
     raf = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(raf)
-  }, [duration, reducedMotion, rotateY])
+  }, [duration, reducedMotion, spin, rotateY])
 
   useEffect(() => {
     if (!interactive || reducedMotion) return

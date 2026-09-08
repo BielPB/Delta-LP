@@ -88,7 +88,7 @@ function DispersedDiagram() {
   return (
     <div className="relative mx-auto flex aspect-square w-full max-w-sm items-center justify-center">
       <div
-        className="absolute inset-[22%] rounded-full bg-[var(--color-lime)] opacity-25 blur-3xl motion-safe:animate-pulse"
+        className="absolute inset-[22%] rounded-full bg-[var(--color-lime)] opacity-10 blur-3xl"
         aria-hidden="true"
       />
       <motion.div
@@ -98,7 +98,7 @@ function DispersedDiagram() {
         viewport={{ once: true }}
         transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
       >
-        <RotatingLogoImage className="h-[42%] w-[42%]" duration={16} />
+        <RotatingLogoImage className="h-[42%] w-[42%]" spin={false} />
       </motion.div>
     </div>
   )
