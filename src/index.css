@@ -1,0 +1,141 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Cores */
+  --color-carbon: #171717;
+  --color-black-deep: #070707;
+  --color-lime: #c6ff34;
+  --color-lime-soft: #d9ff7a;
+  --color-white: #ffffff;
+
+  --color-neutral-50: #f5f5f4;
+  --color-neutral-100: #e8e7e5;
+  --color-neutral-200: #cfcecb;
+  --color-neutral-300: #a6a4a0;
+  --color-neutral-400: #7c7a76;
+  --color-neutral-500: #5a5854;
+  --color-neutral-600: #403f3c;
+  --color-neutral-700: #2c2b29;
+  --color-neutral-800: #1f1e1c;
+  --color-neutral-900: #131211;
+
+  /* Tipografia */
+  --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+
+  /* Raios */
+  --radius-sm: 6px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --radius-xl: 36px;
+
+  /* Sombras */
+  --shadow-lime-glow: 0 0 40px 0 rgb(198 255 52 / 0.25);
+  --shadow-card: 0 20px 60px -20px rgb(0 0 0 / 0.6);
+
+  /* Motion */
+  --ease-delta: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 200ms;
+  --duration-base: 500ms;
+  --duration-slow: 900ms;
+
+  /* Breakpoints extra */
+  --breakpoint-xs: 375px;
+  --breakpoint-3xl: 1920px;
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 88px;
+  }
+
+  body {
+    background-color: var(--color-black-deep);
+    color: var(--color-white);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: var(--color-lime);
+    color: var(--color-black-deep);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-lime);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .container-delta {
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 4vw, 4rem);
+  }
+
+  .grid-lines {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.06) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  .text-gradient-lime {
+    background: linear-gradient(90deg, var(--color-lime) 0%, var(--color-lime-soft) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -100px;
+    z-index: 100;
+    background: var(--color-lime);
+    color: var(--color-black-deep);
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    transition: top var(--duration-fast) var(--ease-delta);
+  }
+
+  .skip-link:focus {
+    top: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

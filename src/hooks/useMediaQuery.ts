@@ -1,0 +1,21 @@
+import { useEffect, useState } from 'react'
+
+export function useMediaQuery(query: string) {
+  const [matches, setMatches] = useState(() =>
+    typeof window !== 'undefined' ? window.matchMedia(query).matches : false,
+  )
+
+  useEffect(() => {
+    const mql = window.matchMedia(query)
+    setMatches(mql.matches)
+    const listener = (event: MediaQueryListEvent) => setMatches(event.matches)
+    mql.addEventListener('change', listener)
+    return () => mql.removeEventListener('change', listener)
+  }, [query])
+
+  return matches
+}
+
+export function useIsMobile() {
+  return useMediaQuery('(max-width: 767px)')
+}
