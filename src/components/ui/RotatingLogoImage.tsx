@@ -12,7 +12,7 @@ type RotatingLogoImageProps = {
   thickness?: number
 }
 
-const SLICE_COUNT = 9
+const SLICE_COUNT = 18
 
 /**
  * Gira o render 3D real da marca (`/brand/delta-logo-lateral-3d.png`) usando
@@ -22,11 +22,15 @@ const SLICE_COUNT = 9
  * do brilho não são alterados.
  *
  * Para simular espessura real ao girar (em vez de uma foto plana que
- * desaparece de perfil), a mesma imagem é empilhada em várias camadas com
- * profundidade (`translateZ`) crescente e sombreamento leve nas camadas de
- * trás — todas a MESMA imagem, sem geometria inventada. De frente, as
- * camadas se sobrepõem perfeitamente (fica idêntico à imagem original); de
- * perfil, a pilha revela um "miolo" sólido em vez de uma linha fina.
+ * desaparece de perfil), a mesma imagem é empilhada em 18 camadas finas com
+ * profundidade (`translateZ`) crescente — todas a MESMA imagem, sem
+ * geometria inventada. De frente, as camadas se sobrepõem perfeitamente
+ * (fica idêntico à imagem original); de perfil, a pilha revela um volume
+ * sólido em vez de uma linha fina. Um leve desfoque crescente nas camadas
+ * de trás funde as fatias num bloco único, sem listras visíveis, e o
+ * brilho lime (`drop-shadow`) é aplicado por fora da rotação 3D — por isso
+ * envolve o objeto em qualquer ângulo, inclusive de perfil e "de costas",
+ * em vez de existir só quando a frente está virada para a câmera.
  *
  * Proporção preservada (`object-contain`, sem `width`/`height` fixos que
  * distorçam), sem filtro de cor no plano frontal. Respeita
@@ -80,7 +84,12 @@ export function RotatingLogoImage({
         const t = i / (SLICE_COUNT - 1) // 0 = camada de trás, 1 = camada da frente
         return {
           z: -thickness / 2 + t * thickness,
-          brightness: 0.4 + t * 0.6,
+          // Curva suave (não linear): mantém brilho alto mesmo nas camadas de
+          // trás, para o volume parecer "aceso" de qualquer ângulo, com um
+          // leve desfoque crescente para as camadas se fundirem num só bloco
+          // em vez de listras visíveis.
+          brightness: 0.72 + Math.sqrt(t) * 0.28,
+          blur: (1 - t) * 0.5,
           isFront: i === SLICE_COUNT - 1,
         }
       }),
@@ -105,9 +114,19 @@ export function RotatingLogoImage({
     )
   }
 
+  // Brilho lime persistente ao redor da silhueta, aplicado FORA do grupo com
+  // preserve-3d (drop-shadow força achatamento de contexto 3D se aplicado ao
+  // próprio grupo) — assim o brilho acompanha o objeto em qualquer ângulo,
+  // inclusive de perfil ou de "costas", em vez de existir só de frente.
+  const glowStyle = {
+    perspective: 900,
+    filter:
+      'drop-shadow(0 0 10px rgba(198,255,52,0.5)) drop-shadow(0 0 26px rgba(198,255,52,0.28))',
+  }
+
   return (
     <div className={className} style={fadeStyle}>
-      <div className="h-full w-full" style={{ perspective: 900 }}>
+      <div className="h-full w-full" style={glowStyle}>
         <motion.div
           className="relative h-full w-full"
           style={{
@@ -130,7 +149,10 @@ export function RotatingLogoImage({
                 alt=""
                 aria-hidden="true"
                 className="absolute inset-0 h-full w-full object-contain"
-                style={{ transform: `translateZ(${slice.z}px)`, filter: `brightness(${slice.brightness})` }}
+                style={{
+                  transform: `translateZ(${slice.z}px)`,
+                  filter: `brightness(${slice.brightness}) blur(${slice.blur}px)`,
+                }}
               />
             ),
           )}
