@@ -77,7 +77,9 @@ export function LogoPedestal({ className = '' }: LogoPedestalProps) {
       transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
       aria-hidden="true"
     >
-      {/* glow ambiente lime, herdado da iluminação do Hero */}
+      {/* halo difuso, mais largo e suave, dá profundidade atmosférica ao conjunto */}
+      <div className="absolute inset-x-[-30%] bottom-[-6%] h-[75%] rounded-[999px] bg-[var(--color-lime)] opacity-[0.08] blur-3xl" />
+      {/* glow ambiente lime, mais próximo, herdado da iluminação do Hero */}
       <div className="absolute inset-x-[-10%] bottom-[4%] h-[55%] rounded-[999px] bg-[var(--color-lime)] opacity-[0.2] blur-2xl" />
       {/* sombra de contato, ancora o conjunto ao chão */}
       <div className="absolute inset-x-[8%] bottom-0 h-[14%] rounded-[999px] bg-black/70 blur-md" />

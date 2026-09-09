@@ -28,15 +28,20 @@ export function Hero() {
       />
 
       <div className="pointer-events-none absolute inset-0 z-[1] flex items-end justify-center pb-16 opacity-20 lg:items-center lg:justify-end lg:pb-0 lg:opacity-100">
+        {/* halo amplo e desfocado, funde a cena da logo ao fundo da seção */}
+        <div
+          className="pointer-events-none absolute right-[2%] top-1/2 hidden h-[80%] w-[50%] -translate-y-[46%] rounded-[999px] bg-[radial-gradient(ellipse_at_center,rgba(198,255,52,0.12),transparent_65%)] blur-3xl lg:block"
+          aria-hidden="true"
+        />
         <div className="relative flex h-[140px] w-[140px] items-center justify-center sm:h-[180px] sm:w-[180px] lg:mr-[10%] lg:h-[340px] lg:w-[340px]">
           <LogoPedestal className="inset-x-[-16%] bottom-[3%] h-[26%]" />
           {/* sombra de flutuação, logo abaixo da peça, separada do pedestal */}
           <div
-            className="pointer-events-none absolute inset-x-[30%] bottom-[27%] h-[4%] rounded-[999px] bg-black/60 blur-sm"
+            className="pointer-events-none absolute inset-x-[28%] bottom-[31%] h-[4%] rounded-[999px] bg-black/60 blur-sm"
             aria-hidden="true"
           />
-          <div className="relative h-full w-full -translate-y-[12%]">
-            <RotatingLogoImage className="relative h-full w-full" duration={14} interactive />
+          <div className="relative h-full w-full -translate-y-[18%]">
+            <RotatingLogoImage className="relative h-full w-full" spin={false} interactive />
           </div>
         </div>
       </div>
