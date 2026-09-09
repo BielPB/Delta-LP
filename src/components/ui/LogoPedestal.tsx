@@ -16,7 +16,8 @@ function Cylinder({ width, height, left, z }: CylinderProps) {
         className="absolute inset-x-0 top-0 rounded-[999px]"
         style={{
           height: '34%',
-          background: 'linear-gradient(150deg, #ffffff 0%, #e6e6e6 55%, #c7c7c7 100%)',
+          background: 'linear-gradient(125deg, #1e1e1e 0%, #0b0b0b 55%, #030303 100%)',
+          boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.08), 0 0 0 1px rgba(198,255,52,0.14)',
         }}
       />
       <div
@@ -25,7 +26,8 @@ function Cylinder({ width, height, left, z }: CylinderProps) {
           top: '17%',
           borderBottomLeftRadius: '50% 14px',
           borderBottomRightRadius: '50% 14px',
-          background: 'linear-gradient(to right, #adadad 0%, #f8f8f8 42%, #ececec 68%, #a3a3a3 100%)',
+          background:
+            'linear-gradient(100deg, #020202 0%, #0a0a0a 50%, #12150c 74%, rgba(198,255,52,0.5) 86%, #020202 100%)',
         }}
       />
     </div>
@@ -76,9 +78,9 @@ export function LogoPedestal({ className = '' }: LogoPedestalProps) {
       aria-hidden="true"
     >
       {/* glow ambiente lime, herdado da iluminação do Hero */}
-      <div className="absolute inset-x-[-10%] bottom-[4%] h-[55%] rounded-[999px] bg-[var(--color-lime)] opacity-[0.14] blur-2xl" />
+      <div className="absolute inset-x-[-10%] bottom-[4%] h-[55%] rounded-[999px] bg-[var(--color-lime)] opacity-[0.2] blur-2xl" />
       {/* sombra de contato, ancora o conjunto ao chão */}
-      <div className="absolute inset-x-[8%] bottom-0 h-[14%] rounded-[999px] bg-black/55 blur-md" />
+      <div className="absolute inset-x-[8%] bottom-0 h-[14%] rounded-[999px] bg-black/70 blur-md" />
 
       <Cylinder width="46%" height="82%" left="27%" z={1} />
       <Cylinder width="34%" height="52%" left="1%" z={2} />

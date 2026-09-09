@@ -30,7 +30,14 @@ export function Hero() {
       <div className="pointer-events-none absolute inset-0 z-[1] flex items-end justify-center pb-16 opacity-20 lg:items-center lg:justify-end lg:pb-0 lg:opacity-100">
         <div className="relative flex h-[140px] w-[140px] items-center justify-center sm:h-[180px] sm:w-[180px] lg:mr-[10%] lg:h-[340px] lg:w-[340px]">
           <LogoPedestal className="inset-x-[-16%] bottom-[3%] h-[26%]" />
-          <RotatingLogoImage className="relative h-full w-full" duration={14} interactive />
+          {/* sombra de flutuação, logo abaixo da peça, separada do pedestal */}
+          <div
+            className="pointer-events-none absolute inset-x-[30%] bottom-[27%] h-[4%] rounded-[999px] bg-black/60 blur-sm"
+            aria-hidden="true"
+          />
+          <div className="relative h-full w-full -translate-y-[12%]">
+            <RotatingLogoImage className="relative h-full w-full" duration={14} interactive />
+          </div>
         </div>
       </div>
 
