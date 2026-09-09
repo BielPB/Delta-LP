@@ -3,6 +3,7 @@ import { ChevronDown } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { MagneticButton } from '@/components/ui/MagneticButton'
 import { RotatingLogoImage } from '@/components/ui/RotatingLogoImage'
+import { LogoPedestal } from '@/components/ui/LogoPedestal'
 import { openWhatsApp } from '@/lib/whatsapp'
 import { trackEvent } from '@/lib/analytics'
 
@@ -28,30 +29,7 @@ export function Hero() {
 
       <div className="pointer-events-none absolute inset-0 z-[1] flex items-end justify-center pb-16 opacity-20 lg:items-center lg:justify-end lg:pb-0 lg:opacity-100">
         <div className="relative flex h-[140px] w-[140px] items-center justify-center sm:h-[180px] sm:w-[180px] lg:mr-[10%] lg:h-[340px] lg:w-[340px]">
-          {/* sombra de contato, ancora a peça ao chão */}
-          <div
-            className="absolute inset-x-[12%] bottom-[9%] h-[7%] rounded-[999px] bg-black/70 blur-md"
-            aria-hidden="true"
-          />
-          {/* glow ambiente em duas camadas, para dar profundidade à plataforma */}
-          <div
-            className="absolute inset-x-[-8%] bottom-[2%] h-[28%] rounded-[999px] bg-[var(--color-lime)] opacity-[0.12] blur-2xl"
-            aria-hidden="true"
-          />
-          <div
-            className="absolute inset-x-[8%] bottom-[8%] h-[13%] rounded-[999px] bg-[var(--color-lime)] opacity-25 blur-xl"
-            aria-hidden="true"
-          />
-          {/* disco da plataforma, em vidro escuro */}
-          <div
-            className="absolute inset-x-[6%] bottom-[10%] h-[10%] rounded-[999px] border border-white/15 bg-gradient-to-b from-white/[0.08] via-white/[0.02] to-transparent"
-            aria-hidden="true"
-          />
-          {/* aresta iluminada, na borda frontal do disco */}
-          <div
-            className="absolute inset-x-[10%] bottom-[14.5%] h-px rounded-full bg-gradient-to-r from-transparent via-[var(--color-lime)] to-transparent"
-            aria-hidden="true"
-          />
+          <LogoPedestal className="inset-x-[-16%] bottom-[3%] h-[26%]" />
           <RotatingLogoImage className="relative h-full w-full" duration={14} interactive />
         </div>
       </div>
