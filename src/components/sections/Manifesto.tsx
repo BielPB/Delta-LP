@@ -68,7 +68,7 @@ function EditorialMark() {
         />
         <div className="grid-lines absolute inset-6 rounded-[var(--radius-md)] opacity-25" aria-hidden="true" />
 
-        <RotatingLogoImage className="relative h-2/3 w-2/3" duration={12} />
+        <RotatingLogoImage className="relative h-2/3 w-2/3" spin={false} />
 
         <span className="absolute bottom-6 left-6 flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-white/35">
           <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-lime)] motion-safe:animate-pulse" aria-hidden="true" />
