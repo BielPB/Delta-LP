@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
-import { HeroBackground } from '@/components/three/HeroBackground'
 import { Button } from '@/components/ui/Button'
 import { MagneticButton } from '@/components/ui/MagneticButton'
 import { RotatingLogoImage } from '@/components/ui/RotatingLogoImage'
@@ -29,7 +28,14 @@ export function Hero() {
 
       <div className="pointer-events-none absolute inset-0 z-[1] flex items-end justify-center pb-16 opacity-20 lg:items-center lg:justify-end lg:pb-0 lg:opacity-100">
         <div className="relative flex h-[140px] w-[140px] items-center justify-center sm:h-[180px] sm:w-[180px] lg:mr-[10%] lg:h-[340px] lg:w-[340px]">
-          <HeroBackground className="absolute inset-[-45%]" />
+          <div
+            className="absolute inset-x-[8%] bottom-[10%] h-[16%] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(198,255,52,0.32),transparent_72%)] blur-lg"
+            aria-hidden="true"
+          />
+          <div
+            className="absolute inset-x-[16%] bottom-[15%] h-px rounded-full bg-gradient-to-r from-transparent via-[var(--color-lime)]/80 to-transparent"
+            aria-hidden="true"
+          />
           <RotatingLogoImage className="relative h-full w-full" duration={14} interactive />
         </div>
       </div>
