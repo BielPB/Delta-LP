@@ -1,3 +1,4 @@
+import { MotionConfig } from 'framer-motion'
 import { SkipLink } from '@/components/layout/SkipLink'
 import { ScrollProgress } from '@/components/layout/ScrollProgress'
 import { Header } from '@/components/layout/Header'
@@ -18,7 +19,7 @@ import { FinalCTA } from '@/components/sections/FinalCTA'
 
 function App() {
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       <SkipLink />
       <ScrollProgress />
       <Header />
@@ -38,7 +39,7 @@ function App() {
       </main>
       <Footer />
       <FloatingWhatsApp />
-    </>
+    </MotionConfig>
   )
 }
 

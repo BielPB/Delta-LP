@@ -4,6 +4,7 @@ import { team } from '@/data/team'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { Reveal } from '@/components/ui/Reveal'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { useReducedMotion } from '@/hooks/useReducedMotion'
 
 export function Team() {
   return (
@@ -31,9 +32,11 @@ function TeamCard({ member }: { member: (typeof team)[number] }) {
   const ref = useRef<HTMLDivElement>(null)
   const [tilt, setTilt] = useState({ x: 0, y: 0 })
   const canHover = useMediaQuery('(hover: hover) and (pointer: fine)')
+  const reducedMotion = useReducedMotion()
+  const active = canHover && !reducedMotion
 
   function handleMove(event: React.MouseEvent<HTMLDivElement>) {
-    if (!canHover || !ref.current) return
+    if (!active || !ref.current) return
     const rect = ref.current.getBoundingClientRect()
     const px = (event.clientX - rect.left) / rect.width - 0.5
     const py = (event.clientY - rect.top) / rect.height - 0.5

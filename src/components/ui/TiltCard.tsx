@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 import { motion } from 'framer-motion'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { useReducedMotion } from '@/hooks/useReducedMotion'
 
 type TiltCardProps = {
   children: ReactNode
@@ -9,14 +10,19 @@ type TiltCardProps = {
   intensity?: number
 }
 
-/** Cartão com leve inclinação 3D que segue o cursor (somente desktop com hover real). */
+/**
+ * Cartão com leve inclinação 3D que segue o cursor. Ativo apenas em telas
+ * com hover real (desktop) e desativado com prefers-reduced-motion.
+ */
 export function TiltCard({ children, className = '', intensity = 8 }: TiltCardProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [tilt, setTilt] = useState({ x: 0, y: 0 })
   const canHover = useMediaQuery('(hover: hover) and (pointer: fine)')
+  const reducedMotion = useReducedMotion()
+  const active = canHover && !reducedMotion
 
   function handleMove(event: React.MouseEvent<HTMLDivElement>) {
-    if (!canHover || !ref.current) return
+    if (!active || !ref.current) return
     const rect = ref.current.getBoundingClientRect()
     const px = (event.clientX - rect.left) / rect.width - 0.5
     const py = (event.clientY - rect.top) / rect.height - 0.5
