@@ -40,7 +40,7 @@ export function FinalCTA() {
               Falar com a Delta no WhatsApp
             </Button>
           </MagneticButton>
-          <p className="text-sm text-white/40">Clique para iniciar uma conversa com nossa equipe.</p>
+          <p className="text-sm text-white/50">Clique para iniciar uma conversa com nossa equipe.</p>
         </Reveal>
       </div>
     </section>

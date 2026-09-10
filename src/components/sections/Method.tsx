@@ -59,7 +59,7 @@ export function Method() {
                     <span className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--color-lime)] bg-[var(--color-carbon)] text-sm font-semibold text-[var(--color-lime)]">
                       {i + 1}
                     </span>
-                    <span className="font-mono text-xs uppercase tracking-wider text-white/40">
+                    <span className="font-mono text-xs uppercase tracking-wider text-white/55">
                       {phase.range}
                     </span>
                   </div>

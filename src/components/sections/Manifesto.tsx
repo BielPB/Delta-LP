@@ -23,7 +23,7 @@ export function Manifesto() {
             </p>
           </Reveal>
           <Reveal delay={0.18}>
-            <p className="text-white/45">
+            <p className="text-white/50">
               Nascida em {siteConfig.contact.city}, {siteConfig.contact.state}, a Delta constrói marcas em
               todo o Brasil.
             </p>
@@ -70,7 +70,7 @@ function EditorialMark() {
 
         <RotatingLogoImage className="relative h-2/3 w-2/3" spin={false} />
 
-        <span className="absolute bottom-6 left-6 flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-white/35">
+        <span className="absolute bottom-6 left-6 flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-white/55">
           <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-lime)] motion-safe:animate-pulse" aria-hidden="true" />
           Campina Grande, PB
         </span>

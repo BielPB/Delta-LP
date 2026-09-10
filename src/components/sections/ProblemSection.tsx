@@ -70,7 +70,7 @@ export function ProblemSection() {
 
           <Reveal delay={0.1}>
             <div className="flex flex-col gap-3 pt-10">
-              <p className="text-sm text-white/40">
+              <p className="text-sm text-white/50">
                 Marketing que resolve não começa na postagem. Começa no diagnóstico.
               </p>
               <p className="text-balance text-[clamp(1.25rem,2.4vw,1.75rem)] font-medium leading-snug text-white">

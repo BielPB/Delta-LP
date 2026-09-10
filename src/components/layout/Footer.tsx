@@ -15,7 +15,7 @@ export function Footer() {
             <DeltaWordmark markHeightClassName="h-10" textClassName="text-2xl" />
           </a>
           <p className="max-w-xs text-white/60">{siteConfig.tagline}</p>
-          <p className="flex items-center gap-2 text-sm text-white/40">
+          <p className="flex items-center gap-2 text-sm text-white/50">
             <MapPin className="size-4" aria-hidden="true" />
             {siteConfig.contact.city}, {siteConfig.contact.state}
           </p>
@@ -62,7 +62,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="container-delta mt-12 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-white/40 sm:flex-row sm:items-center sm:justify-between">
+      <div className="container-delta mt-12 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-white/50 sm:flex-row sm:items-center sm:justify-between">
         <p>© {year} Delta. Todos os direitos reservados.</p>
         <div className="flex gap-6">
           <a href={siteConfig.legal.privacyUrl} className="hover:text-white/70 transition-colors">

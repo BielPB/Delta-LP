@@ -69,7 +69,7 @@ export function SystemSection() {
                       }`}
                     >
                       <span
-                        className={`font-mono text-sm ${isActive ? 'text-[var(--color-lime)]' : 'text-white/30'}`}
+                        className={`font-mono text-sm ${isActive ? 'text-[var(--color-lime)]' : 'text-white/50'}`}
                       >
                         {service.index}
                       </span>

@@ -20,7 +20,7 @@ export function ClientsMarquee() {
             <div
               key={`${client.id}-${i}`}
               tabIndex={0}
-              className="group/logo flex h-16 shrink-0 items-center justify-center px-4 text-xl font-medium text-white/35 transition-colors duration-300 hover:text-[var(--color-lime)] focus-visible:text-[var(--color-lime)] active:text-[var(--color-lime)]"
+              className="group/logo flex h-16 shrink-0 items-center justify-center px-4 text-xl font-medium text-white/55 transition-colors duration-300 hover:text-[var(--color-lime)] focus-visible:text-[var(--color-lime)] active:text-[var(--color-lime)]"
             >
               {client.logo ? (
                 <img

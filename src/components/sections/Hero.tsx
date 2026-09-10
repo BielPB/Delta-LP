@@ -94,7 +94,7 @@ export function Hero() {
                 </Button>
               </MagneticButton>
             </div>
-            <p className="text-sm text-white/45">
+            <p className="text-sm text-white/50">
               Conte o momento da sua marca. A conversa começa agora, pelo WhatsApp, sem formulário e sem
               espera.
             </p>
