@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState } from 'react'
+import { lazy, Suspense, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { services } from '@/data/services'
 import { SectionHeading } from '@/components/ui/SectionHeading'
@@ -125,14 +125,27 @@ function MobileModuleCarousel({
   activeIndex: number
   onSelect: (i: number) => void
 }) {
+  const scrollerRef = useRef<HTMLDivElement>(null)
+
+  function selectAndScroll(index: number) {
+    onSelect(index)
+    const el = scrollerRef.current
+    const card = el?.children[index] as HTMLElement | undefined
+    card?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' })
+  }
+
   return (
     <div>
       <div
+        ref={scrollerRef}
         className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 -mx-5 px-5"
         style={{ scrollbarWidth: 'none' }}
         onScroll={(e) => {
           const el = e.currentTarget
-          const index = Math.round(el.scrollLeft / (el.firstElementChild?.clientWidth ?? 1))
+          const first = el.children[0] as HTMLElement | undefined
+          const second = el.children[1] as HTMLElement | undefined
+          const step = second && first ? second.offsetLeft - first.offsetLeft : (first?.clientWidth ?? 1)
+          const index = Math.round(el.scrollLeft / step)
           if (index !== activeIndex && index >= 0 && index < services.length) onSelect(index)
         }}
       >
@@ -166,7 +179,7 @@ function MobileModuleCarousel({
             role="tab"
             aria-selected={i === activeIndex}
             aria-label={service.title}
-            onClick={() => onSelect(i)}
+            onClick={() => selectAndScroll(i)}
             className="flex h-11 w-11 shrink-0 items-center justify-center"
           >
             <span
