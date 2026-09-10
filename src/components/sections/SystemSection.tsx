@@ -152,7 +152,7 @@ function MobileModuleCarousel({
         {services.map((service, i) => (
           <motion.div
             key={service.id}
-            className="min-w-[85%] shrink-0 snap-center rounded-[var(--radius-lg)] border border-white/10 bg-white/[0.03] p-6"
+            className="w-[85%] shrink-0 snap-center rounded-[var(--radius-lg)] border border-white/10 bg-white/[0.03] p-6"
             animate={{ opacity: i === activeIndex ? 1 : 0.5 }}
           >
             <span className="font-mono text-sm text-[var(--color-lime)]">{service.index}</span>
